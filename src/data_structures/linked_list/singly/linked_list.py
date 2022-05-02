@@ -83,7 +83,7 @@ class LinkedList:
 
         currentNode = self.head
 
-        if currentNode != None:
+        if currentNode:
             while currentNode.next:
                 if self.compare.equal(currentNode.next.value, value):
                     deleteNode = currentNode.next

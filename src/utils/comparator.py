@@ -4,6 +4,12 @@ class Comparator:
 
     @staticmethod
     def defaultCompareFunction(a, b):
+        if type(a or b) is dict:
+            if a == b:
+                return 0
+
+            return -1
+
         if a == b:
             return 0
 
