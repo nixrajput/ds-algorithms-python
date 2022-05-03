@@ -1,5 +1,3 @@
-from doubly_linked_list_node import DoublyLinkedListNode
-
 import os
 import sys
 
@@ -8,6 +6,9 @@ src_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(file_p
 root_folder = os.path.abspath(src_dir)
 sys.path.append(root_folder)
 from utils.comparator import Comparator
+from data_structures.linked_list.doubly.doubly_linked_list_node import (
+    DoublyLinkedListNode,
+)
 
 
 class DoublyLinkedList:
