@@ -69,7 +69,7 @@ class Heap:
     def isEmpty(self):
         return not len(self.heapContainer)
 
-    def heapifyUp(self, customStartIndex):
+    def heapifyUp(self, customStartIndex=None):
         # Take the last element (last in array or the bottom left in a tree)
         # in the heap container and lift it up until it is in the correct
         # order with respect to its parent element.
@@ -115,7 +115,7 @@ class Heap:
             return None
 
         if len(self.heapContainer) == 1:
-            return self.heapContainer.pop
+            return self.heapContainer.pop()
 
         item = self.heapContainer[0]
 
@@ -165,5 +165,5 @@ class Heap:
 
         return self
 
-    def toString(self):
-        return self.heapContainer.__str__()
+    def toList(self):
+        return self.heapContainer
