@@ -33,10 +33,3 @@ class Comparator:
     def reverse(self):
         compareOriginal = self.compare
         self.compare = lambda a, b: compareOriginal(b, a)
-
-
-# print(Comparator.defaultCompareFunction(5, 6))
-
-# c = Comparator()
-# c.reverse()
-# print(c.greaterThan(5,6))

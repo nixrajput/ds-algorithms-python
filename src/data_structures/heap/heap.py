@@ -1,4 +1,3 @@
-import math
 import os
 import sys
 
@@ -21,7 +20,7 @@ class Heap:
         return (2 * parentIndex) + 2
 
     def getParentIndex(self, childIndex):
-        return math.floor((childIndex - 1) / 2)
+        return (childIndex - 1) // 2
 
     def hasParent(self, childIndex):
         return self.getParentIndex(childIndex) >= 0
@@ -42,10 +41,10 @@ class Heap:
         return self.heapContainer[self.getParentIndex(childIndex)]
 
     def swap(self, indexOne, indexTwo):
-        temp = self.heapContainer[indexTwo]
-
-        self.heapContainer[indexTwo] = self.heapContainer[indexOne]
-        self.heapContainer[indexOne] = temp
+        self.heapContainer[indexOne], self.heapContainer[indexTwo] = (
+            self.heapContainer[indexTwo],
+            self.heapContainer[indexOne],
+        )
 
     def pairIsInCorrectOrder(self, firstElement, secondElement):
         # Checks if pair of heap elements is in correct order.
@@ -73,10 +72,18 @@ class Heap:
         # Take the last element (last in array or the bottom left in a tree)
         # in the heap container and lift it up until it is in the correct
         # order with respect to its parent element.
-        currentIndex = customStartIndex or len(self.heapContainer) - 1
+        currentIndex = (
+            customStartIndex
+            if (customStartIndex is not None)
+            else len(self.heapContainer) - 1
+        )
 
-        while self.hasParent(currentIndex) and not self.pairIsInCorrectOrder(
-            self.parent(currentIndex), self.heapContainer[currentIndex]
+        while (
+            self.hasParent(currentIndex)
+            and self.pairIsInCorrectOrder(
+                self.parent(currentIndex), self.heapContainer[currentIndex]
+            )
+            == False
         ):
             self.swap(currentIndex, self.getParentIndex(currentIndex))
             currentIndex = self.getParentIndex(currentIndex)
@@ -151,17 +158,11 @@ class Heap:
 
                 parentItem = self.parent(indexToRemove)
 
-                # If there is no parent or parent is in correct order with the node
-                # we're going to delete then heapify down. Otherwise heapify up.
-                if self.hasLeftChild(indexToRemove) and (
-                    not parentItem
-                    or self.pairIsInCorrectOrder(
-                        parentItem, self.heapContainer[indexToRemove]
-                    )
-                ):
+                # If there is a left child and left child is not
+                # in correct order with the node
+                # we're going to delete then heapify down.
+                if self.hasLeftChild(indexToRemove):
                     self.heapifyDown(indexToRemove)
-                else:
-                    self.heapifyUp(indexToRemove)
 
         return self
 

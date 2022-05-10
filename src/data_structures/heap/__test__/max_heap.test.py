@@ -110,28 +110,9 @@ class TestCase(unittest.TestCase):
         self.assertEqual(maxHeap.find(12), [0])
         self.assertEqual(maxHeap.find(11), [1, 4])
 
-    def test_remove_items_with_heapify_down_from_heap(self):
+    def test_remove_items_from_heap(self):
         """
-        Test to remove items from heap with heapify down
-        """
-        maxHeap = MaxHeap()
-
-        maxHeap.add(3)
-        maxHeap.add(12)
-        maxHeap.add(10)
-        maxHeap.add(11)
-        maxHeap.add(11)
-
-        self.assertEqual(maxHeap.toList(), [12, 11, 10, 3, 11])
-
-        self.assertEqual(maxHeap.remove(12).toList(), [11, 11, 10, 3])
-        self.assertEqual(maxHeap.remove(12).peek(), 11)
-        self.assertEqual(maxHeap.remove(11).toList(), [10, 3])
-        self.assertEqual(maxHeap.remove(10).peek(), 3)
-
-    def test_remove_items_with_heapify_up_from_heap(self):
-        """
-        Test to remove items from heap with heapify up
+        Test to remove items from heap
         """
         maxHeap = MaxHeap()
 
@@ -151,10 +132,11 @@ class TestCase(unittest.TestCase):
         self.assertEqual(maxHeap.remove(4).toList(), [10, 8, 6, 7, 6, 1, 5, 3, 2])
         self.assertEqual(maxHeap.remove(3).toList(), [10, 8, 6, 7, 6, 1, 5, 2])
         self.assertEqual(maxHeap.remove(5).toList(), [10, 8, 6, 7, 6, 1, 2])
-        self.assertEqual(maxHeap.remove(10).toList(), [2, 8, 6, 7, 6, 1])
-        self.assertEqual(maxHeap.remove(6).toList(), [2, 8, 1, 7])
-        self.assertEqual(maxHeap.remove(2).toList(), [7, 8, 1])
-        self.assertEqual(maxHeap.remove(1).toList(), [7, 8])
+        self.assertEqual(maxHeap.remove(10).toList(), [8, 7, 6, 2, 6, 1])
+
+        self.assertEqual(maxHeap.remove(6).toList(), [8, 7, 1, 2])
+        self.assertEqual(maxHeap.remove(2).toList(), [8, 7, 1])
+        self.assertEqual(maxHeap.remove(1).toList(), [8, 7])
         self.assertEqual(maxHeap.remove(7).toList(), [8])
         self.assertEqual(maxHeap.remove(8).toList(), [])
 
